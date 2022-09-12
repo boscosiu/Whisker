@@ -1,0 +1,94 @@
+{
+  "vehicle": {
+    "id": "vehicle0",
+    "server_address": "tcp://localhost:9000",
+    "keep_out_radius": 0.5,
+    "clients": {
+      "drive0": {
+        "i2c_device": "/dev/i2c-1",
+        "address": "0x40",
+        "left_motor_channels": {
+          "input_1": 0,
+          "input_2": 1,
+          "pwm": 2
+        },
+        "right_motor_channels": {
+          "input_1": 3,
+          "input_2": 4,
+          "pwm": 5
+        },
+        "throttle_scale_straight": 1.0,
+        "throttle_scale_rotation": 1.0
+      },
+      "imu0": {
+        "i2c_device": "/dev/i2c-1",
+        "address": "0x68",
+        "zero_offsets": {
+          "accel_x": 0,
+          "accel_y": 0,
+          "accel_z": 0,
+          "gyro_x": 0,
+          "gyro_y": 0,
+          "gyro_z": 0
+        },
+        "position": {
+          "roll": 0,
+          "pitch": 0,
+          "yaw": 0
+        }
+      },
+      "hokuyo0": {
+        "serial_device_or_ip": "/dev/ttyACM0",
+        "is_serial_device": true,
+        "position": {
+          "x": 0,
+          "y": 0,
+          "r": 0
+        }
+      },
+      "sick0": {
+        "address": "192.168.0.1",
+        "port": 2111,
+        "rotates_clockwise": false,
+        "angle_offset": 90,
+        "position": {
+          "x": 0,
+          "y": 0,
+          "r": 0
+        }
+      }
+    }
+  },
+  "server": {
+    "resource_dir": "./resources",
+    "cartographer": {
+      "config_file": "./cartographer.lua",
+      "base_config_dir": "./cartographer_base_config",
+      "pure_localization_num_submaps": 3,
+      "overlapping_trimmer_fresh_submaps_count": 1,
+      "overlapping_trimmer_min_covered_area": 2,
+      "overlapping_trimmer_min_added_submaps_count": 5
+    },
+    "client_service": {
+      "websocket": {
+        "enabled": false,
+        "port": 9002
+      },
+      "zeromq": {
+        "enabled": true,
+        "bind_address": "tcp://*:9000"
+      }
+    },
+    "console_service": {
+      "websocket": {
+        "enabled": true,
+        "port": 9001,
+        "root": "./whisker_console.zip"
+      },
+      "zeromq": {
+        "enabled": false,
+        "bind_address": "tcp://*:9003"
+      }
+    }
+  }
+}

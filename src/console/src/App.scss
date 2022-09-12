@@ -1,0 +1,11 @@
+$web-font-path: false;
+
+button:focus:not(:focus-visible),
+.btn:focus:not(:focus-visible),
+.btn-check:focus:not(:focus-visible) + .btn {
+    box-shadow: none !important;
+}
+
+@import '~bootswatch/dist/darkly/variables';
+@import '~bootstrap/scss/bootstrap';
+@import '~bootswatch/dist/darkly/bootswatch';

@@ -1,0 +1,113 @@
+syntax = "proto3";
+
+option optimize_for = LITE_RUNTIME;
+
+import public "common.proto";
+
+package whisker.proto;
+
+message SubmapId {
+    int32 trajectory_id = 1;
+    int32 index = 2;
+}
+
+message ServerStateMessage {
+    message VehicleData {
+        string assigned_map_id = 1;
+        float keep_out_radius = 2;
+        repeated string capabilities = 3;
+    }
+    repeated string map_ids = 1;
+    map<string, VehicleData> vehicles = 2;
+}
+
+message RequestResourceFilesMessage {
+}
+
+message ResourceFilesMessage {
+    repeated string maps = 1;
+}
+
+message RequestMapDataMessage {
+    string map_id = 1;
+    uint32 have_version = 2;
+}
+
+message MapDataMessage {
+    message Submap {
+        SubmapId submap_id = 1;
+        int32 version = 2;
+        Transform global_pose = 3;  // only used when is_new_map_version = true
+    }
+    string map_id = 1;
+    repeated Submap submaps = 2;
+    bool is_new_map_version = 3;
+    uint32 map_version = 4;  // only used when is_new_map_version = true
+}
+
+message RequestSubmapTexturesMessage {
+    string map_id = 1;
+    repeated SubmapId submap_ids = 2;
+}
+
+message SubmapTextureMessage {
+    string map_id = 1;
+    SubmapId submap_id = 2;
+    int32 version = 3;
+    bytes texture = 4;
+    double resolution = 5;  // width of one texture pixel in meters
+    Transform submap_pose = 6;
+}
+
+message RequestVehiclePosesMessage {
+    string map_id = 1;
+}
+
+message VehiclePosesMessage {
+    message VehiclePose {
+        string vehicle_id = 1;
+        Transform pose = 2;
+    }
+    string map_id = 1;
+    repeated VehiclePose vehicle_poses = 2;
+}
+
+message RequestCreateMapMessage {
+    string map_id = 1;
+    bool use_overlapping_trimmer = 2;
+}
+
+message RequestDeleteMapMessage {
+    string map_id = 1;
+}
+
+message RequestSaveMapMessage {
+    string map_id = 1;
+}
+
+message RequestLoadMapMessage {
+    string map_id = 1;
+    string map_file_name = 2;
+    bool is_frozen = 3;
+    bool use_overlapping_trimmer = 4;
+}
+
+message RequestDeleteVehicleMessage {
+    string vehicle_id = 1;
+}
+
+message RequestAssignVehicleToMapMessage {
+    string vehicle_id = 1;
+    string map_id = 2;
+    Transform initial_pose = 3;
+    bool allow_global_localization = 4;
+    bool use_localization_trimmer = 5;
+}
+
+message RequestStartObservationLogMessage {
+    string vehicle_id = 1;
+}
+
+message RequestStopObservationLogMessage {
+    string vehicle_id = 1;
+}

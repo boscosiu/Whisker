@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option optimize_for = LITE_RUNTIME;
+
+package whisker.proto;
+
+// x and y in meters, +x points forward, +y points left
+// r in radians, increasing counterclockwise, zero points forward
+message Transform {
+    double x = 1;
+    double y = 2;
+    double r = 3;
+}
+
+message InvokeCapabilityMessage {
+    string vehicle_id = 1;
+    string capability = 2;
+    string input = 3;
+}

@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+option optimize_for = LITE_RUNTIME;
+
+import public "common.proto";
+
+package whisker.proto;
+
+// Orientation of the sensor in radians
+message ImuSensorProperties {
+    double roll = 1;
+    double pitch = 2;
+    double yaw = 3;
+}
+
+message ImuObservation {
+    double linear_acceleration_x = 1;  // meters/second^2
+    double linear_acceleration_y = 2;
+    double linear_acceleration_z = 3;
+    double angular_velocity_x = 4;  // radians/second
+    double angular_velocity_y = 5;
+    double angular_velocity_z = 6;
+}
+
+// Angle values are in radians, increasing counterclockwise, with zero being the front of the sensor
+message LidarSensorProperties {
+    double starting_angle = 1;
+    double angular_resolution = 2;
+    uint32 rotations_per_second = 3;
+    Transform position = 4;
+}
+
+message LidarObservation {
+    repeated uint32 measurements = 1;  // millimeters
+}
+
+message SensorClientInitMessage {
+    string vehicle_id = 1;
+    float keep_out_radius = 2;  // meters
+    oneof sensor_type {
+        ImuSensorProperties imu_properties = 3;
+        LidarSensorProperties lidar_properties = 4;
+    }
+}
+
+message CapabilityClientInitMessage {
+    string vehicle_id = 1;
+    repeated string capabilities = 2;
+}
+
+message RequestObservationMessage {
+}
+
+message ObservationMessage {
+    uint64 timestamp = 1;  // acquisition time of this observation's last measurement, in milliseconds
+    oneof sensor_type {
+        ImuObservation imu_observation = 2;
+        LidarObservation lidar_observation = 3;
+    }
+}
