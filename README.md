@@ -34,9 +34,36 @@ Where `[OPTIONS]` may be zero or more of the following:
 - `-DWHISKER_PROTOC_PATH=/path/to/protoc`
   - Manually specify the location of the Protobuf compiler executable.  Default is to use the `protoc` that is created as part of building Protobuf.  This should be set if you are cross compiling since the binary that is cross built likely won't run on this system.
 
-During this process CMake will build the dependencies and place them in `build/whisker_dependencies`.  The runtime directory where Whisker binaries get placed is `build/whisker_bin`.
+CMake will build the dependencies into `build/whisker_dependencies` and create targets for the various components.  Targets can be built with `make` (e.g., `make whisker_server`) or through your CMake-supporting IDE.  Build output will be placed in `build/whisker_bin`.
 
-By default, the binaries will read from a `config.json` located in the current directory.  The documentation for each component outlines what they expect to see in this file.  The sample config at [config/config.json](config/config.json) can be used as a starting point.
+Components will read their configuration from a `config.json` in the current directory by default.  The documentation for each component outlines what they expect to see in this file.  The sample config at [config/config.json](config/config.json) can be used as a starting point.
+
+## Components
+
+- `whisker_server`
+  - Central server component
+  - [src/server/README.md](src/server/README.md)
+- `whisker_console`
+  - Browser-based console application
+  - [src/console/README.md](src/console/README.md)
+- `whisker_client_lidar_hokuyo`
+  - Sensor client for Hokuyo lidars
+  - [src/clients/lidar_hokuyo/README.md](src/clients/lidar_hokuyo/README.md)
+- `whisker_client_lidar_sick`
+  - Sensor client for Sick lidars
+  - [src/clients/lidar_sick/README.md](src/clients/lidar_sick/README.md)
+- `whisker_client_imu_mpu6050`
+  - Sensor client for InvenSense MPU-6050 series IMUs
+  - [src/clients/imu_mpu6050/README.md](src/clients/imu_mpu6050/README.md)
+- `whisker_client_drive_pca9685`
+  - Capability client for controlling differential drive motors with the NXP PCA9685 PWM controller
+  - [src/clients/drive_pca9685/README.md](src/clients/drive_pca9685/README.md)
+- `whisker_client_observation_playback`
+  - Client that pretends to be a sensor client by replaying a previously recorded observation log
+  - [src/clients/observation_playback/README.md](src/clients/observation_playback/README.md)
+- `whisker_util_convert_rosbag`
+  - Utility to convert a ROS bag file containing IMU or lidar messages to a Whisker observation log
+  - [src/utils/convert_rosbag/README.md](src/utils/convert_rosbag/README.md)
 
 ## License
 
