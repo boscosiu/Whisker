@@ -3,7 +3,6 @@ find_package(glog REQUIRED)
 find_package(jsoncpp REQUIRED)
 
 include(ExternalProject)
-# 2-clause BSD license - https://github.com/UrgNetworks/urg_library/raw/master/current/COPYRIGHT.txt
 ExternalProject_Add(urg_library
     PREFIX urg_library
     URL https://github.com/UrgNetworks/urg_library/archive/refs/tags/ver.1.2.6.tar.gz

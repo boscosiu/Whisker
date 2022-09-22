@@ -67,35 +67,30 @@ if(WHISKER_DEPENDENCY_JOBS EQUAL "0")
 endif()
 message("Using ${WHISKER_DEPENDENCY_JOBS} parallel jobs to build dependencies")
 
-# zlib license - https://github.com/zlib-ng/zlib-ng/raw/develop/LICENSE.md
 whisker_build_cmake_dependency_project(ZLIB
     https://github.com/zlib-ng/zlib-ng/archive/refs/tags/2.0.6.tar.gz
     8258b75a72303b661a238047cb348203d88d9dddf85d480ed885f375916fcab6
     "-DZLIB_COMPAT:STRING=ON -DZLIB_ENABLE_TESTS:STRING=OFF -DBUILD_SHARED_LIBS:STRING=OFF -DSKIP_INSTALL_FILES:STRING=ON"
 )
 
-# MIT license - https://github.com/open-source-parsers/jsoncpp/raw/master/LICENSE
 whisker_build_cmake_dependency_project(jsoncpp
     https://github.com/open-source-parsers/jsoncpp/archive/refs/tags/1.9.5.tar.gz
     f409856e5920c18d0c2fb85276e24ee607d2a09b5e7d5f0a371368903c275da2
     "-DBUILD_SHARED_LIBS:STRING=OFF -DJSONCPP_WITH_TESTS:STRING=OFF -DJSONCPP_WITH_POST_BUILD_UNITTEST:STRING=OFF"
 )
 
-# 3-clause BSD license - https://github.com/gflags/gflags/raw/master/COPYING.txt
 whisker_build_cmake_dependency_project(gflags
     https://github.com/gflags/gflags/archive/v2.2.2.tar.gz
     34af2f15cf7367513b352bdcd2493ab14ce43692d2dcd9dfc499492966c64dcf
     "-DREGISTER_INSTALL_PREFIX:STRING=OFF"
 )
 
-# 3-clause BSD license - https://github.com/google/glog/raw/master/COPYING
 whisker_build_cmake_dependency_project(glog
     https://github.com/google/glog/archive/refs/tags/v0.6.0.tar.gz
     8a83bf982f37bb70825df71a9709fa90ea9f4447fb3c099e1d720a439d88bad6
     "-DBUILD_SHARED_LIBS:STRING=OFF -DWITH_GTEST:STRING=OFF -DWITH_UNWIND:STRING=OFF -DBUILD_TESTING:STRING=OFF"
 )
 
-# 3-clause BSD license - https://github.com/protocolbuffers/protobuf/raw/main/LICENSE
 whisker_build_cmake_dependency_project(protobuf
     https://github.com/protocolbuffers/protobuf/releases/download/v21.5/protobuf-cpp-3.21.5.tar.gz
     58c8a18b4ec22655535c493155c5465a8903e8249094ceead87e00763bdbc44f
@@ -104,7 +99,6 @@ whisker_build_cmake_dependency_project(protobuf
      -Dprotobuf_MSVC_STATIC_RUNTIME:STRING=OFF"
 )
 
-# MIT license - https://github.com/warmcat/libwebsockets/raw/main/LICENSE
 whisker_build_cmake_dependency_project(libwebsockets
     https://github.com/warmcat/libwebsockets/archive/refs/tags/v4.3.2.tar.gz
     6a85a1bccf25acc7e8e5383e4934c9b32a102880d1e4c37c70b27ae2a42406e1
@@ -121,7 +115,6 @@ whisker_build_cmake_dependency_project(libwebsockets
      -DLWS_WITH_MINIMAL_EXAMPLES:STRING=OFF"
 )
 
-# LGPLv3 with linking exception - https://github.com/zeromq/libzmq/raw/master/COPYING.LESSER
 whisker_build_cmake_dependency_project(ZeroMQ
     https://github.com/zeromq/libzmq/archive/ee09926cbd089cec780896cf7aa65f8bfd4b1b86.zip
     60d76d2bd171900733c32f3c8ea5e4ec50b8b6e16c93a8554e4c6ac2c2875122
@@ -137,21 +130,18 @@ whisker_build_cmake_dependency_project(ZeroMQ
 )
 
 if(NOT WHISKER_CLIENT_ONLY_BUILD)
-    # zlib license - https://sourceforge.net/p/libpng/code/ci/master/tree/LICENSE
     whisker_build_cmake_dependency_project(PNG
         https://download.sourceforge.net/libpng/libpng-1.6.37.tar.xz
         505e70834d35383537b6491e7ae8641f1a4bed1876dbfe361201fc80868d88ca
         "-DPNG_SHARED:STRING=OFF -DPNG_TESTS:STRING=OFF"
     )
 
-    # MPL 2.0 (we don't use the LGPLv2.1 portions) - https://gitlab.com/libeigen/eigen/-/raw/master/COPYING.MPL2
     whisker_build_cmake_dependency_project(Eigen3
         https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.bz2
         b4c198460eba6f28d34894e3a5710998818515104d6e74e5cc331ce31e46e626
         "-DBUILD_TESTING:STRING=OFF -DEIGEN_BUILD_DOC:STRING=OFF"
     )
 
-    # 3-clause BSD license - https://github.com/ceres-solver/ceres-solver/raw/master/LICENSE
     whisker_build_cmake_dependency_project(Ceres
         https://github.com/ceres-solver/ceres-solver/archive/refs/tags/2.1.0.tar.gz
         ccbd716a93f65d4cb017e3090ae78809e02f5426dce16d0ee2b4f8a4ba2411a8
@@ -160,21 +150,18 @@ if(NOT WHISKER_CLIENT_ONLY_BUILD)
          -DBUILD_BENCHMARKS:STRING=OFF"
     )
 
-    # MIT license - https://github.com/LuaDist/lua/raw/lua-5.1/COPYRIGHT
     whisker_build_cmake_dependency_project(Lua
         https://github.com/LuaDist/lua/archive/5.3.2.tar.gz
         fd91904ca1025481acbc0effd578cc2b9994d359a86d84ac6959ecb56f65a749
         "-DBUILD_SHARED_LIBS:STRING=OFF -DLUA_USE_DLOPEN:STRING=OFF -DLUA_USE_READLINE:STRING=OFF"
     )
 
-    # Apache License 2.0 - https://github.com/abseil/abseil-cpp/raw/master/LICENSE
     whisker_build_cmake_dependency_project(absl
         https://github.com/abseil/abseil-cpp/archive/refs/tags/20220623.0.tar.gz
         4208129b49006089ba1d6710845a45e31c59b0ab6bff9e5788a87f55c5abd602
         ""
     )
 
-    # Apache License 2.0 - https://github.com/boscosiu/cartographer-whiskerdev/raw/whiskerdev/LICENSE
     whisker_build_cmake_dependency_project(cartographer
         https://github.com/boscosiu/cartographer-whiskerdev/archive/refs/tags/r1.tar.gz
         91e20609ef1143923737d0e3e0b33ea60d829ae63fcbc25a9464fd2f9d62face

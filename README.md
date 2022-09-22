@@ -68,3 +68,5 @@ Components will read their configuration from a `config.json` in the current dir
 ## License
 
 Whisker is licensed under the terms of the Apache License, Version 2.0.  See [LICENSE](LICENSE) for more information.
+
+Dependencies are statically linked into the output binaries by default.  They are listed with their licenses in [DEPENDENCIES.md](DEPENDENCIES.md).
