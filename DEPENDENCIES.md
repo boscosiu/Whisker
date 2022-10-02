@@ -17,4 +17,4 @@ Whisker uses the following libraries.  They are downloaded and built by CMake du
 | Eigen         | `MPL-2.0`                               | `whisker_server`              | <https://gitlab.com/libeigen/eigen>                   |
 | libpng        | `libpng-2.0`                            | `whisker_server`              | <https://sourceforge.net/p/libpng/code>               |
 | Lua           | `MIT`                                   | `whisker_server`              | <https://github.com/LuaDist/lua>                      |
-| URG Library   | `BSD-2-Clause`                          | `whisker_client_lidar_hokuyo` | <https://github.com/UrgNetworks/urg_library>          |
+| URG Library   | `BSD-2-Clause`                          | `whisker_client_lidar_hokuyo` | <https://github.com/UrgNetwork/urg_library>           |

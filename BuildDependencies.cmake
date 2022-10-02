@@ -92,11 +92,9 @@ whisker_build_cmake_dependency_project(glog
 )
 
 whisker_build_cmake_dependency_project(protobuf
-    https://github.com/protocolbuffers/protobuf/releases/download/v21.5/protobuf-cpp-3.21.5.tar.gz
-    58c8a18b4ec22655535c493155c5465a8903e8249094ceead87e00763bdbc44f
-    "-DBUILD_SHARED_LIBS:STRING=OFF
-     -Dprotobuf_BUILD_TESTS:STRING=OFF
-     -Dprotobuf_MSVC_STATIC_RUNTIME:STRING=OFF"
+    https://github.com/protocolbuffers/protobuf/releases/download/v21.7/protobuf-cpp-3.21.7.tar.gz
+    70de993af0b4f2ddacce59e62ba6d7b7e48faf48beb1b0d5f1ac0e1fb0a68423
+    "-DBUILD_SHARED_LIBS:STRING=OFF -Dprotobuf_BUILD_TESTS:STRING=OFF -Dprotobuf_MSVC_STATIC_RUNTIME:STRING=OFF"
 )
 
 whisker_build_cmake_dependency_project(libwebsockets
@@ -131,9 +129,9 @@ whisker_build_cmake_dependency_project(ZeroMQ
 
 if(NOT WHISKER_CLIENT_ONLY_BUILD)
     whisker_build_cmake_dependency_project(PNG
-        https://download.sourceforge.net/libpng/libpng-1.6.37.tar.xz
-        505e70834d35383537b6491e7ae8641f1a4bed1876dbfe361201fc80868d88ca
-        "-DPNG_SHARED:STRING=OFF -DPNG_TESTS:STRING=OFF"
+        https://download.sourceforge.net/libpng/libpng-1.6.38.tar.xz
+        b3683e8b8111ebf6f1ac004ebb6b0c975cd310ec469d98364388e9cedbfa68be
+        "-DPNG_SHARED:STRING=OFF -DPNG_EXECUTABLES:STRING=OFF -DPNG_TESTS:STRING=OFF"
     )
 
     whisker_build_cmake_dependency_project(Eigen3
@@ -145,9 +143,7 @@ if(NOT WHISKER_CLIENT_ONLY_BUILD)
     whisker_build_cmake_dependency_project(Ceres
         https://github.com/ceres-solver/ceres-solver/archive/refs/tags/2.1.0.tar.gz
         ccbd716a93f65d4cb017e3090ae78809e02f5426dce16d0ee2b4f8a4ba2411a8
-        "-DBUILD_TESTING:STRING=OFF
-         -DBUILD_EXAMPLES:STRING=OFF
-         -DBUILD_BENCHMARKS:STRING=OFF"
+        "-DBUILD_TESTING:STRING=OFF -DBUILD_EXAMPLES:STRING=OFF -DBUILD_BENCHMARKS:STRING=OFF"
     )
 
     whisker_build_cmake_dependency_project(Lua
@@ -157,8 +153,8 @@ if(NOT WHISKER_CLIENT_ONLY_BUILD)
     )
 
     whisker_build_cmake_dependency_project(absl
-        https://github.com/abseil/abseil-cpp/archive/refs/tags/20220623.0.tar.gz
-        4208129b49006089ba1d6710845a45e31c59b0ab6bff9e5788a87f55c5abd602
+        https://github.com/abseil/abseil-cpp/archive/refs/tags/20220623.1.tar.gz
+        91ac87d30cc6d79f9ab974c51874a704de9c2647c40f6932597329a282217ba8
         ""
     )
 
