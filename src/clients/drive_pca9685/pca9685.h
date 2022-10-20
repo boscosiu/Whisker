@@ -3,9 +3,6 @@
 
 #include <json/json.h>
 
-// NXP PCA9685 I2C bus PWM controller
-// https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf
-
 class Pca9685 final {
   public:
     Pca9685(const Json::Value& config);

@@ -8,10 +8,6 @@
 #include <whisker/overwriting_buffer.h>
 #include <client.pb.h>
 
-// InvenSense MPU-6050 6-axis IMU
-// https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf
-// https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Register-Map1.pdf
-
 class Mpu6050 final {
   public:
     Mpu6050(const Json::Value& config);
