@@ -10,9 +10,9 @@ Linux (GCC, Clang), macOS (Xcode Clang), Windows (MSVC)
 
 ### Command Line Options
 
-- `-config [config file path]`
+- `--config=[config file path]`
   - Use JSON configuration file at the given path (default: `config.json` in current directory)
-- `-id [client ID]`
+- `--id=[client ID]`
   - Specify the vehicle-wide unique ID used to identify this component to the server (default: `sick0`)
 
 ### Configuration

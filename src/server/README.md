@@ -12,12 +12,12 @@ Linux (GCC, Clang), macOS (Xcode Clang), Windows (MSVC)
 
 ### Command Line Options
 
-- `-config [config file path]`
+- `--config=[config file path]`
   - Use JSON configuration file at the given path (default: `config.json` in current directory)
 
 ### Configuration
 
-This example config is available at [/config/config.json](../../config/config.json).  In addition to this JSON config file, a Lua config file for Cartographer must be provided.  See [Cartographer Config](#cartographer-config) below.
+In addition to this JSON config file, a [Lua config file](#cartographer-config) for Cartographer must be provided.  Samples of these files are available at [/config/config.json](../../config/config.json) and [/config/cartographer.lua](../../config/cartographer.lua).
 
 ```json5
 // config.json
@@ -75,7 +75,7 @@ This example config is available at [/config/config.json](../../config/config.js
 | `overlapping_trimmer_min_covered_area`        | number | Overlapping Trimmer: Trim submaps which cover an area less than this number of square meters                              |
 | `overlapping_trimmer_min_added_submaps_count` | number | Overlapping Trimmer: Number of added submaps before trimmer is invoked                                                    |
 
-<sup>1</sup> This is a Lua config file used by the Cartographer SLAM backend, parts of which is documented in the [Cartographer docs](https://google-cartographer.readthedocs.io/en/latest/configuration.html).  A sample is provided at [/config/cartographer.lua](../../config/cartographer.lua).\
+<sup>1</sup> This is a Lua config file used by the Cartographer SLAM backend, parts of which is documented in the [Cartographer docs](https://google-cartographer.readthedocs.io/en/latest/configuration.html).\
 <sup>2</sup> These config files are copied to the output directory during the build process.
 
 #### Message Handler Configs

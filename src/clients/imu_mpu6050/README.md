@@ -13,10 +13,10 @@ Linux (GCC, Clang)
 
 ### Command Line Options
 
-- `-config [config file path]`
-    - Use JSON configuration file at the given path (default: `config.json` in current directory)
-- `-id [client ID]`
-    - Specify the vehicle-wide unique ID used to identify this component to the server (default: `imu0`)
+- `--config=[config file path]`
+  - Use JSON configuration file at the given path (default: `config.json` in current directory)
+- `--id=[client ID]`
+  - Specify the vehicle-wide unique ID used to identify this component to the server (default: `imu0`)
 
 ### Configuration
 
@@ -61,4 +61,4 @@ This example config is available at [/config/config.json](../../../config/config
 
 ### Sensor Position
 
-⚠ ️IMUs must be placed at the rotational axis of the vehicle for accurate tracking.  If the vehicle is differentially driven, this would be the center of the vehicle between the wheels.
+⚠ IMUs must be placed at the rotational axis of the vehicle for accurate tracking.  If the vehicle is differentially driven, this would be the center of the vehicle between the wheels.
