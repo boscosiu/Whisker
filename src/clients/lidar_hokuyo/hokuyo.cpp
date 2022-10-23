@@ -69,7 +69,7 @@ void Hokuyo::PopulateSensorProperties(const Json::Value& config) {
 }
 
 void Hokuyo::ProcessSensorData() {
-    CHECK_EQ(urg_start_measurement(urg.get(), URG_DISTANCE, URG_SCAN_INFINITY, 0), URG_NO_ERROR);
+    CHECK_EQ(urg_start_measurement(urg.get(), URG_DISTANCE, URG_SCAN_INFINITY, 0, 1), URG_NO_ERROR);
 
     while (run_sensor_thread) {
         observation_buffer.Write([this](const auto observation) {
