@@ -17,6 +17,7 @@
           "input_2": 4,
           "pwm": 5
         },
+        "use_pwm_channel": true,
         "throttle_scale_straight": 1.0,
         "throttle_scale_rotation": 1.0
       },

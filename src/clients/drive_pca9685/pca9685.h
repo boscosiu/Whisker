@@ -22,11 +22,12 @@ class Pca9685 final {
     };
 
     void SetMotorThrottle(const MotorInfo& motor_info, float throttle);
-    void WriteChannelValues(unsigned char register_num, unsigned int on_value, unsigned int off_value);
+    void WriteChannelValue(unsigned char register_num, float value);
 
     int i2c_fd;
     MotorInfo left_motor;
     MotorInfo right_motor;
+    bool use_pwm_channel;
     float throttle_scale_straight;
     float throttle_scale_rotation;
 };

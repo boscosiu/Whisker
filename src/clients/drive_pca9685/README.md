@@ -40,6 +40,7 @@ This example config is available at [/config/config.json](../../../config/config
           "input_2": 4,
           "pwm": 5
         },
+        "use_pwm_channel": true,
         "throttle_scale_straight": 1.0,
         "throttle_scale_rotation": 1.0
       }
@@ -48,14 +49,15 @@ This example config is available at [/config/config.json](../../../config/config
 }
 ```
 
-| Key                       | Type   |                                                                                   |
-|---------------------------|--------|-----------------------------------------------------------------------------------|
-| `i2c_device`              | string | Device node of system's I2C device                                                |
-| `address`                 | string | I2C address of PCA9685 controller                                                 |
-| `left_motor_channels`     | object | PCA9685 channels that are connected to the logic inputs of the left motor driver  |
-| `right_motor_channels`    | object | PCA9685 channels that are connected to the logic inputs of the right motor driver |
-| `throttle_scale_straight` | number | Multiply throttle values for forward/reverse commands with this number            |
-| `throttle_scale_rotation` | number | Multiply throttle values for rotation commands with this number                   |
+| Key                       | Type    |                                                                                                   |
+|---------------------------|---------|---------------------------------------------------------------------------------------------------|
+| `i2c_device`              | string  | Device node of system's I2C device                                                                |
+| `address`                 | string  | I2C address of PCA9685 controller                                                                 |
+| `left_motor_channels`     | object  | PCA9685 channels that are connected to the logic inputs of the left motor driver                  |
+| `right_motor_channels`    | object  | PCA9685 channels that are connected to the logic inputs of the right motor driver                 |
+| `use_pwm_channel`         | boolean | Whether the motor driver uses a dedicated PWM pin (see [Motor Driver Logic](#motor-driver-logic)) |
+| `throttle_scale_straight` | number  | Multiply throttle values for forward/reverse commands with this number                            |
+| `throttle_scale_rotation` | number  | Multiply throttle values for rotation commands with this number                                   |
 
 ### Capabilities
 
@@ -63,12 +65,22 @@ The capabilities registered for the vehicle are `forward`, `reverse`, `left`, `r
 
 ### Motor Driver Logic
 
-When a motor needs to be driven forward, the channel designated as `input_1` is set low and `input_2` is set high.  For reverse, `input_1` is set high and `input_2` is set low.  In both cases, the channel designated as `pwm` is driven with a duty cycle proportional to the throttle value.  Stopping a motor is the same as driving forward with zero throttle.
+If the motor driver has a dedicated PWM input pin (aka EN/IN, PH/EN, or DIR/PWM mode):
+- set `use_pwm_channel` to `true`
+- if only a single direction pin is needed, assign an unused channel to one of the `input_n` and leave disconnected
 
 |         | `input_1` | `input_2` | `pwm` |
 |---------|:---------:|:---------:|:-----:|
-| Forward |     L     |     H     |  PWM  |
-| Reverse |     H     |     L     |  PWM  |
-| Stop    |     L     |     H     |   L   |
+| Forward |     0     |     1     |  PWM  |
+| Reverse |     1     |     0     |  PWM  |
+| Brake   |     0     |     1     |   0   |
 
-If the motor driver uses a single pin for direction, one of the `input_n` entries can be assigned an unused channel and left disconnected.
+If the motor driver expects PWM on both input pins (aka IN/IN or PWM mode):
+- set `use_pwm_channel` to `false`
+- assign an unused channel to `pwm` and leave disconnected
+
+|         | `input_1` | `input_2` | `pwm` |
+|---------|:---------:|:---------:|:-----:|
+| Forward |   ~PWM    |     1     |   -   |
+| Reverse |     1     |   ~PWM    |   -   |
+| Brake   |     1     |     1     |   -   |

@@ -39,6 +39,7 @@ Pca9685::Pca9685(const Json::Value& config) {
     right_motor.input_2_register_num = channel_register_base + (4 * right_motor_channels["input_2"].asUInt());
     right_motor.pwm_register_num = channel_register_base + (4 * right_motor_channels["pwm"].asUInt());
 
+    use_pwm_channel = config["use_pwm_channel"].asBool();
     throttle_scale_straight = config["throttle_scale_straight"].asFloat();
     throttle_scale_rotation = config["throttle_scale_rotation"].asFloat();
 
@@ -64,33 +65,61 @@ void Pca9685::RotateRight(float throttle) {
 }
 
 void Pca9685::SetMotorThrottle(const MotorInfo& motor_info, float throttle) {
+    bool is_forward = true;
+
     if (throttle < 0) {
-        // reverse direction (input 1 high, input 2 low)
-        WriteChannelValues(motor_info.input_1_register_num, 0x1000, 0);
-        WriteChannelValues(motor_info.input_2_register_num, 0, 0x1000);
         throttle = -throttle;
-    } else {
-        // forward direction (input 1 low, input 2 high)
-        WriteChannelValues(motor_info.input_1_register_num, 0, 0x1000);
-        WriteChannelValues(motor_info.input_2_register_num, 0x1000, 0);
+        is_forward = false;
+    }
+    if (throttle > 1) {
+        throttle = 1;
     }
 
-    // set pwm duty cycle based on throttle value
-    if (throttle >= 1) {
-        WriteChannelValues(motor_info.pwm_register_num, 0x1000, 0);
-    } else if (throttle == 0) {
-        WriteChannelValues(motor_info.pwm_register_num, 0, 0x1000);
+    if (use_pwm_channel) {
+        if (is_forward) {
+            // forward or brake (input_1 = low, input_2 = high, pwm = pwm)
+            WriteChannelValue(motor_info.input_1_register_num, 0);
+            WriteChannelValue(motor_info.input_2_register_num, 1);
+        } else {
+            // reverse (input_1 = high, input_2 = low, pwm = pwm)
+            WriteChannelValue(motor_info.input_1_register_num, 1);
+            WriteChannelValue(motor_info.input_2_register_num, 0);
+        }
+        WriteChannelValue(motor_info.pwm_register_num, throttle);
     } else {
-        WriteChannelValues(motor_info.pwm_register_num, 0, 4095 * throttle);  // 4095 = 12-bit pwm
+        if (throttle == 0) {
+            // brake (input_1 = high, input_2 = high, pwm = unused)
+            WriteChannelValue(motor_info.input_1_register_num, 1);
+            WriteChannelValue(motor_info.input_2_register_num, 1);
+        } else if (is_forward) {
+            // forward (input_1 = inverse pwm, input_2 = high, pwm = unused)
+            WriteChannelValue(motor_info.input_1_register_num, 1 - throttle);
+            WriteChannelValue(motor_info.input_2_register_num, 1);
+        } else {
+            // reverse (input_1 = high, input_2 = inverse pwm, pwm = unused)
+            WriteChannelValue(motor_info.input_1_register_num, 1);
+            WriteChannelValue(motor_info.input_2_register_num, 1 - throttle);
+        }
     }
 }
 
-void Pca9685::WriteChannelValues(unsigned char register_num, unsigned int on_value, unsigned int off_value) {
+void Pca9685::WriteChannelValue(unsigned char register_num, float value) {
+    unsigned short on = 0;
+    unsigned short off = 0;
+
+    if (value >= 1) {
+        on = 0x1000;
+    } else if (value <= 0) {
+        off = 0x1000;
+    } else {
+        off = 4095 * value;  // 4095 = 12-bit pwm
+    }
+
     unsigned char buf[5];
     buf[0] = register_num;
-    buf[1] = on_value & 0xff;
-    buf[2] = on_value >> 8;
-    buf[3] = off_value & 0xff;
-    buf[4] = off_value >> 8;
+    buf[1] = on & 0xff;
+    buf[2] = on >> 8;
+    buf[3] = off & 0xff;
+    buf[4] = off >> 8;
     CHECK_ERR(write(i2c_fd, buf, 5));
 }
