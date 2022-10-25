@@ -4,7 +4,7 @@ Copyright Bosco Siu, Qadyence Inc. (<opensource@qadyence.com>)
 
 ## Overview
 
-Whisker is a distributed localization, mapping, and control system for autonomous ground vehicles.  It uses a client-server model to offload the computational tasks of a fleet of vehicles to a central server.  This simplifies multi-agent coordination and reduces the cost, complexity, and power requirements of the vehicles.
+Whisker is a distributed localization, mapping, and control system for autonomous ground vehicles.  It uses a client-server model to offload the computational tasks of a fleet of vehicles to a central server.  This simplifies multi-agent coordination and vehicle design.
 
 The [Cartographer](https://github.com/cartographer-project/cartographer) system is used as the server's SLAM backend.
 
@@ -12,6 +12,8 @@ A **component** in a Whisker deployment is some software that takes on the role 
 - A **client** is a component associated with a vehicle that produces sensor data from the vehicle (*sensor client*) or performs a task on the vehicle (*capability client*).  This means that on a vehicle with multiple sensors and actuators, a number of sensor and capability clients would be running simultaneously.
 - The **server** is the central component that clients and consoles connect to.  It receives data from sensor clients to build maps and disseminates this information to consoles.  It also receives commands from consoles and routes them to capability clients to execute.
 - A **console** is a component that makes use of map data (e.g., for visualization) and may send commands to capability clients.
+
+![Whisker Topology](https://user-images.githubusercontent.com/18402796/197805515-6a9b6b65-a9d7-4f75-b432-1389b37aaffd.svg)
 
 ## Components
 
