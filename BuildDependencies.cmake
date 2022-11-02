@@ -92,8 +92,8 @@ whisker_build_cmake_dependency_project(glog
 )
 
 whisker_build_cmake_dependency_project(protobuf
-    https://github.com/protocolbuffers/protobuf/releases/download/v21.7/protobuf-cpp-3.21.7.tar.gz
-    70de993af0b4f2ddacce59e62ba6d7b7e48faf48beb1b0d5f1ac0e1fb0a68423
+    https://github.com/protocolbuffers/protobuf/releases/download/v21.9/protobuf-cpp-3.21.9.tar.gz
+    bddc5dd16da45c89a510704683e02ba08c30af78fe092d255cf25b9b01259405
     "-DBUILD_SHARED_LIBS:STRING=OFF -Dprotobuf_BUILD_TESTS:STRING=OFF -Dprotobuf_MSVC_STATIC_RUNTIME:STRING=OFF"
 )
 
@@ -159,8 +159,8 @@ if(NOT WHISKER_CLIENT_ONLY_BUILD)
     )
 
     whisker_build_cmake_dependency_project(cartographer
-        https://github.com/boscosiu/cartographer-whiskerdev/archive/refs/tags/r1.tar.gz
-        91e20609ef1143923737d0e3e0b33ea60d829ae63fcbc25a9464fd2f9d62face
+        https://github.com/boscosiu/cartographer-whiskerdev/archive/refs/tags/r2.tar.gz
+        1706a42dfb6e97148acc5c8ff6ef670d062fe8b6f7e66fb63f3367462a44c5a5
         "-DCARTOGRAPHER_ENABLE_TESTING:STRING=OFF -DCARTOGRAPHER_BUILD_UTILITIES:STRING=OFF -DCARTOGRAPHER_ENABLE_CAIRO_USAGE:STRING=OFF"
     )
 endif()
