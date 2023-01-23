@@ -92,8 +92,8 @@ whisker_build_cmake_dependency_project(glog
 )
 
 whisker_build_cmake_dependency_project(protobuf
-    https://github.com/protocolbuffers/protobuf/releases/download/v21.9/protobuf-cpp-3.21.9.tar.gz
-    bddc5dd16da45c89a510704683e02ba08c30af78fe092d255cf25b9b01259405
+    https://github.com/protocolbuffers/protobuf/releases/download/v21.12/protobuf-cpp-3.21.12.tar.gz
+    4eab9b524aa5913c6fffb20b2a8abf5ef7f95a80bc0701f3a6dbb4c607f73460
     "-DBUILD_SHARED_LIBS:STRING=OFF -Dprotobuf_BUILD_TESTS:STRING=OFF -Dprotobuf_MSVC_STATIC_RUNTIME:STRING=OFF"
 )
 
@@ -129,8 +129,8 @@ whisker_build_cmake_dependency_project(ZeroMQ
 
 if(NOT WHISKER_CLIENT_ONLY_BUILD)
     whisker_build_cmake_dependency_project(PNG
-        https://download.sourceforge.net/libpng/libpng-1.6.38.tar.xz
-        b3683e8b8111ebf6f1ac004ebb6b0c975cd310ec469d98364388e9cedbfa68be
+        https://download.sourceforge.net/libpng/libpng-1.6.39.tar.xz
+        1f4696ce70b4ee5f85f1e1623dc1229b210029fa4b7aee573df3e2ba7b036937
         "-DPNG_SHARED:STRING=OFF -DPNG_EXECUTABLES:STRING=OFF -DPNG_TESTS:STRING=OFF"
     )
 
