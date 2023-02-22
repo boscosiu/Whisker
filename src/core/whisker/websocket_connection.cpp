@@ -3,6 +3,7 @@
 #include <atomic>
 #include <cstring>
 #include <filesystem>
+#include <mutex>
 #include <queue>
 #include <shared_mutex>
 #include <thread>

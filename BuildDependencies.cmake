@@ -91,10 +91,19 @@ whisker_build_cmake_dependency_project(glog
     "-DBUILD_SHARED_LIBS:STRING=OFF -DWITH_GTEST:STRING=OFF -DWITH_UNWIND:STRING=OFF -DBUILD_TESTING:STRING=OFF"
 )
 
+whisker_build_cmake_dependency_project(absl
+    https://github.com/abseil/abseil-cpp/archive/refs/tags/20230125.1.tar.gz
+    81311c17599b3712069ded20cca09a62ab0bf2a89dfa16993786c8782b7ed145
+    ""
+)
+
 whisker_build_cmake_dependency_project(protobuf
-    https://github.com/protocolbuffers/protobuf/releases/download/v21.12/protobuf-cpp-3.21.12.tar.gz
-    4eab9b524aa5913c6fffb20b2a8abf5ef7f95a80bc0701f3a6dbb4c607f73460
-    "-DBUILD_SHARED_LIBS:STRING=OFF -Dprotobuf_BUILD_TESTS:STRING=OFF -Dprotobuf_MSVC_STATIC_RUNTIME:STRING=OFF"
+    https://github.com/protocolbuffers/protobuf/releases/download/v22.0/protobuf-22.0.tar.gz
+    e340f39fad1e35d9237540bcd6a2592ccac353e5d21d0f0521f6ab77370e0142
+    "-DBUILD_SHARED_LIBS:STRING=OFF
+     -Dprotobuf_BUILD_TESTS:STRING=OFF
+     -Dprotobuf_MSVC_STATIC_RUNTIME:STRING=OFF
+     -Dprotobuf_ABSL_PROVIDER:STRING=package"
 )
 
 whisker_build_cmake_dependency_project(libwebsockets
@@ -152,15 +161,9 @@ if(NOT WHISKER_CLIENT_ONLY_BUILD)
         "-DBUILD_SHARED_LIBS:STRING=OFF -DLUA_USE_DLOPEN:STRING=OFF -DLUA_USE_READLINE:STRING=OFF"
     )
 
-    whisker_build_cmake_dependency_project(absl
-        https://github.com/abseil/abseil-cpp/archive/refs/tags/20220623.1.tar.gz
-        91ac87d30cc6d79f9ab974c51874a704de9c2647c40f6932597329a282217ba8
-        ""
-    )
-
     whisker_build_cmake_dependency_project(cartographer
-        https://github.com/boscosiu/cartographer-whiskerdev/archive/refs/tags/r2.tar.gz
-        1706a42dfb6e97148acc5c8ff6ef670d062fe8b6f7e66fb63f3367462a44c5a5
+        https://github.com/boscosiu/cartographer-whiskerdev/archive/refs/tags/r3.tar.gz
+        5861d3ed03386d66dd6867a7c0eddeca43770df879c2709bccea02e393a16bc3
         "-DCARTOGRAPHER_ENABLE_TESTING:STRING=OFF -DCARTOGRAPHER_BUILD_UTILITIES:STRING=OFF -DCARTOGRAPHER_ENABLE_CAIRO_USAGE:STRING=OFF"
     )
 endif()

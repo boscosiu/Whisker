@@ -1,5 +1,6 @@
 #include "zmq_connection.h"
 #include <algorithm>
+#include <mutex>
 #include <shared_mutex>
 #include <thread>
 #include <unordered_map>
