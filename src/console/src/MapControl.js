@@ -1,6 +1,6 @@
 import React from 'react';
 import * as THREE from 'three';
-import {MapControls} from 'three/examples/jsm/controls/OrbitControls';
+import {MapControls} from 'three/examples/jsm/controls/MapControls';
 import {CSS2DObject, CSS2DRenderer} from 'three/examples/jsm/renderers/CSS2DRenderer';
 import SubmapTextureData from './SubmapTextureData';
 

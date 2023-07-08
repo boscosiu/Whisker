@@ -68,9 +68,14 @@ endif()
 message("Using ${WHISKER_DEPENDENCY_JOBS} parallel jobs to build dependencies")
 
 whisker_build_cmake_dependency_project(ZLIB
-    https://github.com/zlib-ng/zlib-ng/archive/refs/tags/2.0.6.tar.gz
-    8258b75a72303b661a238047cb348203d88d9dddf85d480ed885f375916fcab6
-    "-DZLIB_COMPAT:STRING=ON -DZLIB_ENABLE_TESTS:STRING=OFF -DBUILD_SHARED_LIBS:STRING=OFF -DSKIP_INSTALL_FILES:STRING=ON"
+    https://github.com/zlib-ng/zlib-ng/archive/refs/tags/2.1.3.tar.gz
+    d20e55f89d71991c59f1c5ad1ef944815e5850526c0d9cd8e504eaed5b24491a
+    "-DZLIB_COMPAT:STRING=ON
+     -DZLIB_ENABLE_TESTS:STRING=OFF
+     -DZLIBNG_ENABLE_TESTS:STRING=OFF
+     -DWITH_GTEST:STRING=OFF
+     -DBUILD_SHARED_LIBS:STRING=OFF
+     -DSKIP_INSTALL_FILES:STRING=ON"
 )
 
 whisker_build_cmake_dependency_project(jsoncpp
@@ -92,14 +97,14 @@ whisker_build_cmake_dependency_project(glog
 )
 
 whisker_build_cmake_dependency_project(absl
-    https://github.com/abseil/abseil-cpp/archive/refs/tags/20230125.1.tar.gz
-    81311c17599b3712069ded20cca09a62ab0bf2a89dfa16993786c8782b7ed145
+    https://github.com/abseil/abseil-cpp/archive/refs/tags/20230125.3.tar.gz
+    5366d7e7fa7ba0d915014d387b66d0d002c03236448e1ba9ef98122c13b35c36
     ""
 )
 
 whisker_build_cmake_dependency_project(protobuf
-    https://github.com/protocolbuffers/protobuf/releases/download/v22.0/protobuf-22.0.tar.gz
-    e340f39fad1e35d9237540bcd6a2592ccac353e5d21d0f0521f6ab77370e0142
+    https://github.com/protocolbuffers/protobuf/releases/download/v23.4/protobuf-23.4.tar.gz
+    a700a49470d301f1190a487a923b5095bf60f08f4ae4cac9f5f7c36883d17971
     "-DBUILD_SHARED_LIBS:STRING=OFF
      -Dprotobuf_BUILD_TESTS:STRING=OFF
      -Dprotobuf_MSVC_STATIC_RUNTIME:STRING=OFF
@@ -123,12 +128,11 @@ whisker_build_cmake_dependency_project(libwebsockets
 )
 
 whisker_build_cmake_dependency_project(ZeroMQ
-    https://github.com/zeromq/libzmq/archive/ee09926cbd089cec780896cf7aa65f8bfd4b1b86.zip
-    60d76d2bd171900733c32f3c8ea5e4ec50b8b6e16c93a8554e4c6ac2c2875122
+    https://github.com/zeromq/libzmq/archive/ecc63d0d3b0e1a62c90b58b1ccdb5ac16cb2400a.zip
+    ff5a62e37515f5c6bb4981833b735dff000c08d9c889e33f4ee2c17838ca22da
     "-DENABLE_DRAFTS:STRING=ON
      -DENABLE_WS:STRING=OFF
      -DWITH_LIBBSD:STRING=OFF
-     -DWITH_LIBSODIUM:STRING=OFF
      -DWITH_DOC:STRING=OFF
      -DWITH_DOCS:STRING=OFF
      -DBUILD_SHARED:STRING=OFF
@@ -138,8 +142,8 @@ whisker_build_cmake_dependency_project(ZeroMQ
 
 if(NOT WHISKER_CLIENT_ONLY_BUILD)
     whisker_build_cmake_dependency_project(PNG
-        https://download.sourceforge.net/libpng/libpng-1.6.39.tar.xz
-        1f4696ce70b4ee5f85f1e1623dc1229b210029fa4b7aee573df3e2ba7b036937
+        https://download.sourceforge.net/libpng/libpng-1.6.40.tar.xz
+        535b479b2467ff231a3ec6d92a525906fb8ef27978be4f66dbe05d3f3a01b3a1
         "-DPNG_SHARED:STRING=OFF -DPNG_EXECUTABLES:STRING=OFF -DPNG_TESTS:STRING=OFF"
     )
 
@@ -162,8 +166,8 @@ if(NOT WHISKER_CLIENT_ONLY_BUILD)
     )
 
     whisker_build_cmake_dependency_project(cartographer
-        https://github.com/boscosiu/cartographer-whiskerdev/archive/refs/tags/r3.tar.gz
-        5861d3ed03386d66dd6867a7c0eddeca43770df879c2709bccea02e393a16bc3
+        https://github.com/boscosiu/cartographer-whiskerdev/archive/refs/tags/r4.tar.gz
+        e25d9d3b1f3b85c72d96cd48938d97b2af74db8abece16636abeab78ce817770
         "-DCARTOGRAPHER_ENABLE_TESTING:STRING=OFF -DCARTOGRAPHER_BUILD_UTILITIES:STRING=OFF -DCARTOGRAPHER_ENABLE_CAIRO_USAGE:STRING=OFF"
     )
 endif()

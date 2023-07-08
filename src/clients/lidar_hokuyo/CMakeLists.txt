@@ -5,9 +5,8 @@ find_package(jsoncpp REQUIRED)
 include(ExternalProject)
 ExternalProject_Add(urg_library
     PREFIX urg_library
-    URL https://github.com/UrgNetwork/urg_library/archive/refs/tags/ver.1.2.7.tar.gz
-    URL_HASH SHA256=f82c21b9aea2330f932a14ae7ee43a0760e784c88190beabb4659680425aa7a3
-    PATCH_COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_SOURCE_DIR}/PatchUrgUtilsC.cmake
+    URL https://github.com/UrgNetwork/urg_library/archive/328b45274d7ad7cb802fb32d86fd82d518a4603c.zip
+    URL_HASH SHA256=4876ea536f25ce74c3351b4d4b9861f65b4229ff10c69ed51eb6fea77f2a5ea5
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ""
     INSTALL_COMMAND ""

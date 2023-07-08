@@ -180,19 +180,19 @@ Whisker is licensed under the terms of the Apache License, Version 2.0.  See [/L
 
 This software's dependencies are not part of the distribution.  However, they are downloaded by CMake and statically linked into the output binaries by default.  Please be aware of your obligations under these licenses if you intend to redistribute.
 
-| Dependency                                                          | License                                 | Used In Component             |
-|---------------------------------------------------------------------|-----------------------------------------|-------------------------------|
-| [gflags](https://github.com/gflags/gflags)                          | `BSD-3-Clause`                          | All                           |
-| [glog](https://github.com/google/glog)                              | `BSD-3-Clause`                          | All                           |
-| [JsonCpp](https://github.com/open-source-parsers/jsoncpp)           | `MIT`                                   | All                           |
-| [libwebsockets](https://github.com/warmcat/libwebsockets)           | `MIT`                                   | All                           |
-| [protobuf](https://github.com/protocolbuffers/protobuf)             | `BSD-3-Clause`                          | All                           |
-| [ZeroMQ](https://github.com/zeromq/libzmq)                          | `LGPL-3.0-or-later` + linking exception | All                           |
-| [zlib-ng](https://github.com/zlib-ng/zlib-ng)                       | `Zlib`                                  | All                           |
-| [Abseil](https://github.com/abseil/abseil-cpp)                      | `Apache-2.0`                            | `whisker_server`              |
-| [Cartographer](https://github.com/boscosiu/cartographer-whiskerdev) | `Apache-2.0`                            | `whisker_server`              |
-| [Ceres Solver](https://github.com/ceres-solver/ceres-solver)        | `BSD-3-Clause`                          | `whisker_server`              |
-| [Eigen](https://gitlab.com/libeigen/eigen)                          | `MPL-2.0`                               | `whisker_server`              |
-| [libpng](https://sourceforge.net/p/libpng/code)                     | `libpng-2.0`                            | `whisker_server`              |
-| [Lua](https://github.com/LuaDist/lua)                               | `MIT`                                   | `whisker_server`              |
-| [URG Library](https://github.com/UrgNetwork/urg_library)            | `BSD-2-Clause`                          | `whisker_client_lidar_hokuyo` |
+| Dependency                                                          | License        | Used In Component             |
+|---------------------------------------------------------------------|----------------|-------------------------------|
+| [gflags](https://github.com/gflags/gflags)                          | `BSD-3-Clause` | All                           |
+| [glog](https://github.com/google/glog)                              | `BSD-3-Clause` | All                           |
+| [JsonCpp](https://github.com/open-source-parsers/jsoncpp)           | `MIT`          | All                           |
+| [libwebsockets](https://github.com/warmcat/libwebsockets)           | `MIT`          | All                           |
+| [protobuf](https://github.com/protocolbuffers/protobuf)             | `BSD-3-Clause` | All                           |
+| [ZeroMQ](https://github.com/zeromq/libzmq)                          | `MPL-2.0`      | All                           |
+| [zlib-ng](https://github.com/zlib-ng/zlib-ng)                       | `Zlib`         | All                           |
+| [Abseil](https://github.com/abseil/abseil-cpp)                      | `Apache-2.0`   | `whisker_server`              |
+| [Cartographer](https://github.com/boscosiu/cartographer-whiskerdev) | `Apache-2.0`   | `whisker_server`              |
+| [Ceres Solver](https://github.com/ceres-solver/ceres-solver)        | `BSD-3-Clause` | `whisker_server`              |
+| [Eigen](https://gitlab.com/libeigen/eigen)                          | `MPL-2.0`      | `whisker_server`              |
+| [libpng](https://sourceforge.net/p/libpng/code)                     | `libpng-2.0`   | `whisker_server`              |
+| [Lua](https://github.com/LuaDist/lua)                               | `MIT`          | `whisker_server`              |
+| [URG Library](https://github.com/UrgNetwork/urg_library)            | `BSD-2-Clause` | `whisker_client_lidar_hokuyo` |
